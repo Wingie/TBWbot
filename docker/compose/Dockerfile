@@ -4,8 +4,8 @@ LABEL maintainer="Arvind .A"
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
-COPY . /chatapp
-WORKDIR /chatapp
+COPY . /tbyw
+WORKDIR /tbyw
 
 # install curl and nodejs
 RUN apt-get update  && \
@@ -22,8 +22,8 @@ RUN apt-get update  && \
 RUN python3 -m venv /opt/venv && \
     /opt/venv/bin/pip install pip --upgrade && \
     /opt/venv/bin/pip install -r requirements.txt && \
-    chmod +x /chatapp/scripts/entrypoint.sh && \
-    mkdir -p /chatapp/staticfiles_build/static
+    chmod +x /tbyw/scripts/entrypoint.sh && \
+    mkdir -p /tbyw/staticfiles_build/static
 
 # Uninstall nodejs and npm and remove cache
 RUN apt-get purge -y nodejs && \
@@ -34,8 +34,8 @@ RUN apt-get purge -y nodejs && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /root/.npm && \
     rm -rf /root/.cache && \
-    rm -rf /chatapp/node_modules && \
-    rm -rf /chatapp/.npm && \
-    rm -rf /chatapp/apps/chatjs
+    rm -rf /tbyw/node_modules && \
+    rm -rf /tbyw/.npm && \
+    rm -rf /tbyw/apps/chatjs
 
-CMD ["/chatapp/scripts/entrypoint.sh"]
+CMD ["/tbyw/scripts/entrypoint.sh"]
