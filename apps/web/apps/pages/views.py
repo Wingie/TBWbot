@@ -62,12 +62,13 @@ api_key = os.environ["MISTRAL_API_KEY"]
 
 
 def get_agent(request, page_id):
-    # 1. Get the page (assuming you have a Page model)
-    try:
-        page = Page.objects.get(pk=page_id) 
-    except Page.DoesNotExist:
-        return JsonResponse({'error': 'Page not found'}, status=404)
-    print(Page)
-    response_json = call_mistral_api(agent_id, query, api_key)
-
-    return JsonResponse(response_json)
+    # print(request.POST)
+    query = """
+## you are an AI activist for Taste Before you Waste. You are currently assisting the volunteer with a quesion on this poge. Reply using any tools etc you and to the point only the answer and be short.
+{0}
+## User input
+{1}
+##
+""".format(str(request.POST['rag_content']),str(request.POST['query']))
+    response_json = list(call_mistral_api(agent_id, query , api_key)['choices'])
+    return JsonResponse(response_json[0]['message']['content'],safe=False)
