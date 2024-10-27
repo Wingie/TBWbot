@@ -10,7 +10,7 @@ channels==3.0.4;
 constantly==15.1.0; 
 cryptography==39.0.0; 
 daphne==3.0.2; 
-django==3.2.16; 
+django; 
 hiredis==2.1.0; 
 hyperlink==21.0.0; 
 idna==3.4; 
@@ -30,6 +30,9 @@ six==1.16.0;
 sqlparse==0.4.3; 
 twisted[tls]==22.10.0; 
 txaio==22.2.1; 
-typing-extensions==4.4.0; 
+typing-extensions; 
 whitenoise==6.3.0; 
 zope-interface==5.5.2; 
+wagtail
+watchgod
+djangorestframework

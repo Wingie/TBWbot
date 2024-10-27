@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ page.title }}</h1>
+
+    {{ page.intro | richtext }}
+
+    <h2>Pretastes</h2>
+    <ul>
+        {% for item in page.pretastes %}
+            <li>{{ item.value }}</li> 
+        {% endfor %}
+    </ul>
+
+    <h2>Checklist Before</h2>
+    <ul>
+    {% for item in page.checklist_before %}
+        <li>
+            {% if item.value.completed %}
+                <s>{{ item.value.task }}</s> 
+            {% else %}
+                {{ item.value.task }}
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+
+    <h2>Checklist During</h2>
+    <ul>
+    {% for item in page.checklist_during %}
+        <li>
+            {% if item.value.completed %}
+                <s>{{ item.value.task }}</s> 
+            {% else %}
+                {{ item.value.task }}
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+
+    <h2>Checklist After</h2>
+    <ul>
+    {% for item in page.checklist_after %}
+        <li>
+            {% if item.value.completed %}
+                <s>{{ item.value.task }}</s> 
+            {% else %}
+                {{ item.value.task }}
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+
+    <h2>Bar Tab</h2>
+    <ul>
+        {% for item in page.bar_tab %}
+            <li>{{ item.value.name }} - {{ item.value.price }}</li> 
+        {% endfor %}
+    </ul>
+    <h2>Notes</h2>
+    {{ page.notes | richtext }}
+
+    <h2>Photos</h2>
+    {% for item in page.photos %}
+        <img src="{{ item.value.url }}" alt="{{ item.value.title }}"> 
+    {% endfor %}
+{% endblock %}

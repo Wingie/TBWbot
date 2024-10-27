@@ -13,6 +13,7 @@ whitenoise = "^6.0.0"
 channels-redis = "3.4.0"
 psycopg2-binary = "^2.9.3"
 python-decouple = "^3.6"
+mistralai = "^1.1.0"
 
 [tool.poetry.dev-dependencies]
 

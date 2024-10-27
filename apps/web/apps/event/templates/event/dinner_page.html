@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+    <h1>{{ page.title }}</h1>
+    <p class="meta">Coordinated by {{ page.dinner_coordinator }} on {{ page.date }}</p>
+
+    <h2>Food</h2>
+    {% for block in page.food %}
+        {% if block.block_type == 'pickup' %}
+            <h3>Pickup</h3>
+            {{ block.value | richtext }}
+        {% elif block.block_type == 'recipie' %}
+            <h3>Recipie</h3>
+            {{ block.value | richtext }}
+        {% elif block.block_type == 'todos' %}
+            <h3>Todos</h3>
+            {{ block.value | richtext }}
+        {% elif block.block_type == 'images' %}
+            <img src="{% image block.value original %}" alt="{{ block.value.title }}">
+        {% endif %}
+    {% endfor %}
+
+    <h2>Event Details</h2>
+    {% for block in page.body %}
+        {% if block.block_type == 'playbook' %}
+            <h3>Playbook</h3>
+            <p>{{ block.value }}</p>
+        {% elif block.block_type == 'donations' %}
+            <h3>Donations</h3>
+            {{ block.value | richtext }}
+        {% elif block.block_type == 'guests' %}
+            <h3>Guests</h3>
+            {{ block.value | richtext }}
+        {% elif block.block_type == 'images' %}
+            <img src="{% image block.value original %}" alt="{{ block.value.title }}">
+        {% endif %}
+    {% endfor %}
+{% endblock %}
