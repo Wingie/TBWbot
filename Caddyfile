@@ -1,6 +1,7 @@
 chatapp.localhost {
     handle {
         reverse_proxy server:8000
+        reverse_proxy frontend:3000 
     }
     log
 }

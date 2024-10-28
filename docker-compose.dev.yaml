@@ -20,6 +20,16 @@ services:
         path: ./apps
         target: ./apps
 
+  frontend:
+    container_name: toby-frontend
+    build:
+      context: ./apps/toby-frontend 
+      dockerfile: Dockerfile     
+    ports:
+      - "3000:3000" 
+    depends_on:
+      - server 
+
   db:
     container_name: postgres
     image: postgres:13.1-alpine
